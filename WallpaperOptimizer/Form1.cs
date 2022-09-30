@@ -23,7 +23,6 @@ namespace WallpaperOptimizer
             return null;
         }
 
-
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +30,6 @@ namespace WallpaperOptimizer
 
         Image wallpaper = null;
         Image processed = null;
-
 
         private Image GetCheckerboardBackground()
         {
@@ -43,7 +41,6 @@ namespace WallpaperOptimizer
             g.Dispose();
             return bmp;
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -146,7 +143,6 @@ namespace WallpaperOptimizer
             }
 
             fbmp.UnlockBits();
-            
             Graphics renderTarget = Graphics.FromImage(processed);
             renderTarget.DrawImage(bluredBitmap, 0, 0, processed.Width + (processed.Height / blurLayerHeight), processed.Height+ (processed.Height / blurLayerHeight));
             renderTarget.Dispose();
@@ -155,7 +151,13 @@ namespace WallpaperOptimizer
 
         private void button2_Click(object sender, EventArgs e)
         {
+            var temp = button2.Text;
+            button2.Enabled = false;
+            button2.Text = "处理中";
+            Application.DoEvents();
             Process();
+            button2.Enabled = true;
+            button2.Text = temp;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -178,7 +180,6 @@ namespace WallpaperOptimizer
                 }
             } 
         }
-
         public Image readImage(string path)
         {
             using (FileStream f = File.OpenRead(path))
@@ -186,7 +187,6 @@ namespace WallpaperOptimizer
                 return Image.FromStream(f);
             }
         }
-
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             if(openFileDialog.ShowDialog() == DialogResult.OK)
