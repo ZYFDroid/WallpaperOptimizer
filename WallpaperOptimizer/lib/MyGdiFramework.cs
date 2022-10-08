@@ -20,10 +20,13 @@ namespace WallpaperOptimizer
         private static ImageAttributes brightnessImage(float brightness)
         {
             ColorMatrix colorMatrix = new ColorMatrix();
-            colorMatrix.Matrix00 = brightness;
-            colorMatrix.Matrix11 = brightness;
-            colorMatrix.Matrix22 = brightness;
-            colorMatrix.Matrix33 = brightness;
+            colorMatrix.Matrix00 = brightness + 1;
+            colorMatrix.Matrix11 = brightness + 1;
+            colorMatrix.Matrix22 = brightness + 1;
+            colorMatrix.Matrix33 = 1;
+            colorMatrix.Matrix44 = 1;
+
+
             alphaAttrs.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             return alphaAttrs;
         }

@@ -59,6 +59,7 @@ namespace WallpaperOptimizer
             lblBlurAreaSustain.Text = numBlurAreaSustain.Value.ToString();
             lblBlurBrightness.Text = (numBlurBrightness.Value-64).ToString();
             lblBlurRadius.Text = numBlurRadius.Value.ToString();
+            lblBlurWidth.Text = (((float)numBlurWidth.Value) / 100f).ToString();
         }
 
         public void Process()
@@ -72,7 +73,6 @@ namespace WallpaperOptimizer
             Graphics gr = Graphics.FromImage(bluredBitmap);
             int brightness = numBlurBrightness.Value - 64;
             float fBrightness = ((float)brightness) / 80;
-            fBrightness += 1;
             // 亮度范围：0.2 - 1.8 （其实就是每个像素乘以多少）
             DrawUtils.drawBrightnessImage(gr, processed, 0, 0, blurLayerWidth, blurLayerHeight, fBrightness);
             gr.Dispose();
@@ -86,7 +86,7 @@ namespace WallpaperOptimizer
             int blurArea = cmbIconLocation.SelectedIndex;
 
             // 模糊总区域
-            float blurPercent = (float)numBlurWidth.Value / 100f;
+            float blurPercent = (float)numBlurWidth.Value / 10000f;
             // 开始渐变淡出模糊的位置，再这个位置之前都是模糊的图像，从这个位置之后再开始淡出
             float sustainPercent = (float)numBlurAreaSustain.Value / 100f;
 

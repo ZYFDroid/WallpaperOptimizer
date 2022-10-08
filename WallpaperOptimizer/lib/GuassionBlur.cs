@@ -404,4 +404,6 @@ namespace WallpaperOptimizer
             get { return _originBitmap; }
         }
     }
+
+
 }
