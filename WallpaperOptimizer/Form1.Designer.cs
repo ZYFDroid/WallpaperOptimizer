@@ -33,6 +33,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblBlurWidth = new System.Windows.Forms.Label();
             this.lblBlurAreaSustain = new System.Windows.Forms.Label();
             this.lblBlurBrightness = new System.Windows.Forms.Label();
             this.lblBlurRadius = new System.Windows.Forms.Label();
@@ -45,12 +46,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbIconLocation = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.numBlurWidth = new System.Windows.Forms.TrackBar();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.lblBlurWidth = new System.Windows.Forms.Label();
-            this.numBlurWidth = new System.Windows.Forms.TrackBar();
+            this.btnSetWallpaper = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgWallpaper)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -89,6 +90,7 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnSetWallpaper);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(707, 8);
             this.panel2.Name = "panel2";
@@ -99,7 +101,7 @@
             // btnOpenFile
             // 
             this.btnOpenFile.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnOpenFile.Location = new System.Drawing.Point(8, 397);
+            this.btnOpenFile.Location = new System.Drawing.Point(8, 352);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(208, 45);
             this.btnOpenFile.TabIndex = 4;
@@ -126,8 +128,18 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(8, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(208, 442);
+            this.panel3.Size = new System.Drawing.Size(208, 397);
             this.panel3.TabIndex = 3;
+            // 
+            // lblBlurWidth
+            // 
+            this.lblBlurWidth.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblBlurWidth.Location = new System.Drawing.Point(158, 63);
+            this.lblBlurWidth.Name = "lblBlurWidth";
+            this.lblBlurWidth.Size = new System.Drawing.Size(46, 23);
+            this.lblBlurWidth.TabIndex = 7;
+            this.lblBlurWidth.Text = "8.00";
+            this.lblBlurWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblBlurAreaSustain
             // 
@@ -255,10 +267,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "图标位置";
             // 
+            // numBlurWidth
+            // 
+            this.numBlurWidth.AutoSize = false;
+            this.numBlurWidth.Location = new System.Drawing.Point(6, 63);
+            this.numBlurWidth.Maximum = 10000;
+            this.numBlurWidth.Minimum = 200;
+            this.numBlurWidth.Name = "numBlurWidth";
+            this.numBlurWidth.Size = new System.Drawing.Size(155, 23);
+            this.numBlurWidth.TabIndex = 8;
+            this.numBlurWidth.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.numBlurWidth.Value = 800;
+            this.numBlurWidth.ValueChanged += new System.EventHandler(this.numBlurRadius_ValueChanged);
+            // 
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button2.Location = new System.Drawing.Point(8, 442);
+            this.button2.Location = new System.Drawing.Point(8, 397);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(208, 45);
             this.button2.TabIndex = 2;
@@ -269,7 +294,7 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(8, 487);
+            this.button1.Location = new System.Drawing.Point(8, 442);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(208, 45);
             this.button1.TabIndex = 1;
@@ -286,28 +311,16 @@
             // 
             this.openFileDialog.Filter = "图像文件|*.jpg;*.jpeg;*.bmp;*.gif;*.png";
             // 
-            // lblBlurWidth
+            // btnSetWallpaper
             // 
-            this.lblBlurWidth.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblBlurWidth.Location = new System.Drawing.Point(158, 63);
-            this.lblBlurWidth.Name = "lblBlurWidth";
-            this.lblBlurWidth.Size = new System.Drawing.Size(46, 23);
-            this.lblBlurWidth.TabIndex = 7;
-            this.lblBlurWidth.Text = "8.00";
-            this.lblBlurWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // numBlurWidth
-            // 
-            this.numBlurWidth.AutoSize = false;
-            this.numBlurWidth.Location = new System.Drawing.Point(6, 63);
-            this.numBlurWidth.Maximum = 10000;
-            this.numBlurWidth.Minimum = 200;
-            this.numBlurWidth.Name = "numBlurWidth";
-            this.numBlurWidth.Size = new System.Drawing.Size(155, 23);
-            this.numBlurWidth.TabIndex = 8;
-            this.numBlurWidth.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.numBlurWidth.Value = 800;
-            this.numBlurWidth.ValueChanged += new System.EventHandler(this.numBlurRadius_ValueChanged);
+            this.btnSetWallpaper.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSetWallpaper.Location = new System.Drawing.Point(8, 487);
+            this.btnSetWallpaper.Name = "btnSetWallpaper";
+            this.btnSetWallpaper.Size = new System.Drawing.Size(208, 45);
+            this.btnSetWallpaper.TabIndex = 5;
+            this.btnSetWallpaper.Text = "设为壁纸";
+            this.btnSetWallpaper.UseVisualStyleBackColor = true;
+            this.btnSetWallpaper.Click += new System.EventHandler(this.btnSetWallpaper_Click);
             // 
             // Form1
             // 
@@ -356,6 +369,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label lblBlurWidth;
         private System.Windows.Forms.TrackBar numBlurWidth;
+        private System.Windows.Forms.Button btnSetWallpaper;
     }
 }
 

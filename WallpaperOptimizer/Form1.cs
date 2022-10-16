@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
+using WallpaperOptimizer.lib;
 
 namespace WallpaperOptimizer
 {
@@ -13,6 +14,7 @@ namespace WallpaperOptimizer
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static extern bool SystemParametersInfo(uint uAction, uint uParam, StringBuilder lpvParam, uint init);
         const uint SPI_GETDESKWALLPAPER = 0x0073;
+        const uint SPI_SETDESKWALLPAPER = 20;
         public static string GetWallpaperPath()
         {
             StringBuilder wallPaperPath = new StringBuilder(1024);
@@ -195,6 +197,50 @@ namespace WallpaperOptimizer
                 imgWallpaper.Image = wallpaper;
                 processed = null;
             }
+        }
+
+        private void btnSetWallpaper_Click(object sender, EventArgs e)
+        {
+            if (processed == null)
+            {
+                Process();
+                Application.DoEvents();
+            }
+            string defaultPath =Path.Combine(Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%"),"com.zyfdroid.wallpaperoptimizer");
+            if (!Directory.Exists(defaultPath))
+            {
+                Directory.CreateDirectory(defaultPath);
+            }
+            string filePath = Path.Combine(defaultPath, "wallpaper.png");
+            processed.Save(filePath);
+
+            if(Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                if(Environment.OSVersion.Version.Major >= 10)
+                {
+                    SetWallpaperWin10(filePath);
+                }
+                else
+                {
+                    SetWallpaperWin7(filePath);
+                }
+            }
+            else
+            {
+                MessageBox.Show("此系统版本不受支持。");
+            }
+        }
+
+        private void SetWallpaperWin7(string filePath)
+        {
+
+            SystemParametersInfo(SPI_SETDESKWALLPAPER, 1, new StringBuilder(filePath), 1);
+        }
+
+        private void SetWallpaperWin10(string path)
+        {
+            IDesktopWallpaper wallpaperManager = (IDesktopWallpaper)new DesktopWallpaper();
+            wallpaperManager.SetWallpaper(null, path);
         }
     }
 }

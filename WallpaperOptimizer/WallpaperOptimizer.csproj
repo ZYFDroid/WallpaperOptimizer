@@ -55,6 +55,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="lib\GuassionBlur.cs" />
+    <Compile Include="lib\IDesktopWallpaper.cs" />
     <Compile Include="lib\MyGdiFramework.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
